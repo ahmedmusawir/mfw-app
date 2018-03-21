@@ -1,0 +1,46 @@
+{
+  "name": "moose-framework-2",
+  "version": "1.0.0",
+  "description": "The Best WP Based Framework in the World!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedmusawir/moose-framework-2.git"
+  },
+  "keywords": [
+    "WORDPRESS",
+    "GULP",
+    "SCSS",
+    "BOOTSTRAP",
+    "4"
+  ],
+  "author": "The Moose",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ahmedmusawir/moose-framework-2/issues"
+  },
+  "homepage": "https://github.com/ahmedmusawir/moose-framework-2#readme",
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "bootstrap": "^4.0.0",
+    "clean-css": "^4.1.9",
+    "del": "^3.0.0",
+    "delete": "^1.1.0",
+    "featherlight": "^1.7.12",
+    "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-strip-css-comments": "^2.0.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0",
+    "jquery": "^3.3.1",
+    "vue": "^2.5.13"
+  }
+}
