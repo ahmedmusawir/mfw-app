@@ -17,17 +17,18 @@ get_header(); ?>
 
 
 <div class="wp_login_form">
-<div class="form_heading"> Login Form </div>
 
-<?php
-$args = array(
-'redirect' => home_url(),
-'id_username' => 'user',
-'id_password' => 'pass',
-)
-;?>
+	<div class="form_heading"> Login Form </div>
 
-<?php wp_login_form( $args ); ?>
+	<?php
+	$args = array(
+	'redirect' => home_url(),
+	'id_username' => 'user',
+	'id_password' => 'pass',
+	)
+	;?>
+
+	<?php wp_login_form( $args ); ?>
 
 </div>
 
@@ -39,12 +40,15 @@ width: 400px;
 height: 350px;
 border-radius: 5px;
 margin-left: 35%;
+
+margin-top: 10rem;
+margin-bottom: 10rem;
 }
 
 .form_heading{
-width: 380px;
-height: 42px;
-background-color: rgb(162, 46, 51);
+width: 100%;
+height: 60px;
+background-color: orangered;
 color: #fff;
 padding-top: 15px;
 padding-left: 20px;
@@ -72,7 +76,7 @@ radius-border: 3px;
 height: 35px;
 width: 90px;
 border: 1px rgb(162, 46, 51);
-background-color: rgb(162, 46, 51);
+background-color: orangered;
 border-radius: 3px;
 color: #fff;
 }

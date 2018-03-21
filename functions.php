@@ -172,7 +172,7 @@ function moose_framework_2_scripts() {
 
 		'base_url' => rest_url( '/wp/v2/' ),
 		'site_name' => get_bloginfo( 'name' ),
-
+		'nonce'	=> wp_create_nonce('wp_rest'),
 	]);	
 	
 

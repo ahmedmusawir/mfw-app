@@ -27,6 +27,11 @@ function goto_login_page()
 			wp_redirect($login_page);
 			exit;
 		}
+		if ($page == "wp-signup.php" && $_SERVER['REQUEST_METHOD'] == 'GET')
+		{
+			wp_redirect($login_page);
+			exit;
+		}
 		if ($page == "wp-admin/index.php" && $_SERVER['REQUEST_METHOD'] == 'GET')
 		{
 			wp_redirect("/wp-admin/index.php");
