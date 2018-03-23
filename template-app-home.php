@@ -27,14 +27,25 @@ $current_user = wp_get_current_user();
 
 <style type="text/css">
 	.flex-container .flex-item {
-		border:  1px solid brown;
+		/*border:  1px solid brown;*/
 		margin-bottom: 1rem;
 		padding-top: 3rem;
+		background: #e3e3e3;
+		padding: 4rem;
 	}
 	.flex-container .flex-item .btn {
 		width: 6rem;
 		margin-bottom: 1rem;
 	}
+	.flex-container .flex-item .post-title {
+		background: lightgray;
+		border-color: transparent;
+		font-size: 2rem;
+	}
+	[v-cloak] {
+		display: none;
+	}
+
 </style>
 <h4 class="float-right badge badge-secondary m-3"><?php echo "Welcome " . $current_user->user_login; ?></h4>
 
@@ -59,7 +70,7 @@ $current_user = wp_get_current_user();
 		  <div class="card card-body">
 		    
 				<h3 class="text-center">Submit A Post</h3>
-				<form @submit.prevent="submitPosts()">
+				<form @submit.prevent="submitPosts()" v-cloak>
 					<div class="form-group">
 				        <input v-model="postTitle" type="text" class="form-control" placeholder="Post Title">
 				    </div>
@@ -78,21 +89,37 @@ $current_user = wp_get_current_user();
 		
 		<div class="flex-container" style="margin-bottom: 5rem;">
 
-			<article class="text-box flex-item text-center" v-for="post in posts">
+			<article class="text-box flex-item text-center" v-for="post in posts" v-cloak>
 
 				<figure class="row">
 					<div class="col-sm-11 col-md-11 col-lg-11" :id="post.id">
 
-					<h5 class="subheading">{{ post.title.rendered }}</h5>
+					  <div>
+					    
+							<div class="form-group">
+								<input id="editTitle" type="text" class="form-control" :class="{ 'post-title': isActive }" :value=post.title.rendered :title=post.title.rendered :disabled="editable" />
+						    </div>
+						    <div class="form-group" v-if="editView === post.id">
+								<textarea id="editContent" class="form-control" rows="10" :content=post.content.rendered>
+									{{ post.content.rendered }}
+								</textarea>							        
+						    </div>
+						    <div class="form-group" v-if="editView === post.id">
+						        <button type="submit" class="btn btn-success" @click="savePost(post.id)">
+						        	Save Post
+						    	</button>
+						    </div>
 
-					<p>{{ post.id }}</p>
+					  </div>						
 
-					<h1 v-if="error === post.id">Permission Denied!</h1>
+						<p class="badge badge-primary float-right"> Post ID: {{ post.id }}</p>
+
+						<h1 v-if="error === post.id">Permission Denied!</h1>
 					
 					</div>
 					<div class="col-sm-1 col-md-1 col-lg-1">
 						<a class="btn btn-danger" style="color: white;" @click="deletePost(post.id)">DELETE</a>
-						<a class="btn btn-secondary" style="color: white;" @click="deletePost(post.id)">EDIT</a>
+						<a class="btn btn-secondary" style="color: white;" @click="editPost(post.id)">EDIT</a>
 					</div>
 				</figure>
 
