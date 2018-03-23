@@ -1,6 +1,5 @@
 <?php
 /**
- * Template Name: App Home Template
  *
  * This is the template that displays all pages by default.
  * Please note that this is the WordPress construct of pages
