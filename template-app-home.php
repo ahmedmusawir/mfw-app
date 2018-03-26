@@ -31,7 +31,10 @@ $current_user = wp_get_current_user();
 		margin-bottom: 1rem;
 		padding-top: 3rem;
 		background: #e3e3e3;
-		padding: 4rem;
+		padding-left: 4rem;
+		padding-right: 4rem;
+		padding-top: 2rem;
+		padding-bottom: 0;
 	}
 	.flex-container .flex-item .btn {
 		width: 6rem;
@@ -78,6 +81,9 @@ $current_user = wp_get_current_user();
 				        <textarea v-model="postBody" class="form-control" rows="10" placeholder="Post Content"></textarea>
 				    </div>
 				    <div class="form-group">
+				        <textarea v-model="postCode" class="form-control" rows="10" placeholder="Post Code"></textarea>
+				    </div>
+				    <div class="form-group">
 				        <button type="submit" class="btn btn-success">Submit Post</button>
 				    </div>
 				</form>
@@ -101,7 +107,12 @@ $current_user = wp_get_current_user();
 						    </div>
 						    <div class="form-group" v-if="editView === post.id">
 								<textarea id="editContent" class="form-control" rows="10" :content=post.content.rendered>
-									{{ post.content.rendered }}
+										{{ post.content.rendered }}
+								</textarea>							        
+						    </div>
+						    <div class="form-group" v-if="editView === post.id">
+								<textarea id="editCode" class="form-control" rows="10" :content=post.content.rendered>
+										{{ post.acf.sass_or_css }}
 								</textarea>							        
 						    </div>
 						    <div class="form-group" v-if="editView === post.id">

@@ -235,7 +235,7 @@ require get_template_directory() . '/_mfw-functions/admin-functions.php';
 require get_template_directory() . '/_mfw-functions/test-functions.php';
 
 // ACF USAGE WITHOUT A PLUGIN 
-require get_template_directory() . '/_mfw-functions/acf-functions.php';
+// require get_template_directory() . '/_mfw-functions/acf-functions.php';
 
 // WP AUTO PLUGIN & THEME UPDATES
 require get_template_directory() . '/_mfw-functions/wp-auto-update.php';

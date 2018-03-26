@@ -11,6 +11,7 @@ new Vue ({
     	posts:      '',
       postTitle:  '',
       postBody:   '',
+      postCode:   '',
       postId:     '',
       error:      false,
       editView:   false,
@@ -45,6 +46,9 @@ new Vue ({
 
     submitPosts: function() {
 
+      var app = this;
+
+
       jQuery.ajax({
         url:    wp_rest_api.base_url + 'posts',
         type: 'POST',
@@ -56,9 +60,39 @@ new Vue ({
           content:  this.postBody,
           status:   "publish"
         },
-        success: function() {
+        success: function(response) {
           console.log("Insert Post Successful!");
-          location.reload();
+          // location.reload();
+          console.log(response.id);
+          app.postId = response.id;
+
+
+          jQuery.ajax({
+            url:    'http://wpapp.local/wp-json/acf/v3/posts/' + app.postId,
+            type: 'PUT',
+            beforeSend:   function( xhr ) {
+              xhr.setRequestHeader( 'X-WP-Nonce', wp_rest_api.nonce );
+            },
+            data: {
+              'fields': {
+                'sass_or_css': app.postCode 
+              }
+            },
+            success: function() {
+              console.log("Insert ACF Successful!");
+              // location.reload();
+            },
+            error: function() {
+              console.log("Insert ACF Failed!");
+              // app.error = postId;
+            }
+
+
+          }).always( (response) => {
+              console.log("Click ACF Success");
+              console.log(app.postId);  
+          });                    
+
 
         },
         error: function() {
@@ -68,7 +102,19 @@ new Vue ({
 
       }).always( (response) => {
           console.log("Click Success");
+          console.log(app.postId);
       });
+
+      /**
+       *
+       * ACF Insert
+       *
+       */
+
+       console.log('http://wpapp.local/wp-json/acf/v3/posts/' + app.postId);
+
+
+      
 
      },
      deletePost: function(postId) {
@@ -114,13 +160,15 @@ new Vue ({
 
         var editTitle = jQuery('#editTitle').val();
         var editContent = jQuery('#editContent').val();
+        var editCode = jQuery('#editCode').val();
 
-        console.log(editTitle);
-        console.log(editContent);        
+        // console.log(editTitle);
+        // console.log(editContent);  
+        console.log(editCode);      
         
         var updatedPost = {
-          'title':    editTitle,
-          'content':  editContent
+          'title':            editTitle,
+          'content':          editContent,
         }
 
         var app = this;
@@ -138,7 +186,7 @@ new Vue ({
           data: updatedPost,
           success: function() {
             console.log("Edit Post Successful!");
-            location.reload();
+            // location.reload();
           },
           error: function() {
             console.log("Edit Post Failed!");
@@ -148,7 +196,38 @@ new Vue ({
 
         }).always( (response) => {
             console.log("Click Success");
-        });        
+        });    
+
+        /**
+         *
+         * ACF Edit
+         *
+         */
+        
+        jQuery.ajax({
+          url:    'http://wpapp.local/wp-json/acf/v3/posts/' + postId,
+          type: 'PUT',
+          beforeSend:   function( xhr ) {
+            xhr.setRequestHeader( 'X-WP-Nonce', wp_rest_api.nonce );
+          },
+          data: {
+            'fields': {
+              'sass_or_css': editCode 
+            }
+          },
+          success: function() {
+            console.log("Edit ACF Successful!");
+            location.reload();
+          },
+          error: function() {
+            console.log("Edit ACF Failed!");
+            app.error = postId;
+          }
+
+
+        }).always( (response) => {
+            console.log("Click Success");
+        });                    
 
      }
   }
