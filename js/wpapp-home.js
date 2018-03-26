@@ -55,43 +55,50 @@ new Vue ({
         beforeSend:   function( xhr ) {
           xhr.setRequestHeader( 'X-WP-Nonce', wp_rest_api.nonce );
         },
+        dataType : "html",
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
         data: {
           title:    this.postTitle,
           content:  this.postBody,
-          status:   "publish"
+          status:   "publish",
+          "fields[sass_or_css]": app.postCode,
         },
         success: function(response) {
           console.log("Insert Post Successful!");
           // location.reload();
-          console.log(response.id);
+          console.log(app.postCode);
+
+
           app.postId = response.id;
 
-
-          jQuery.ajax({
-            url:    'http://wpapp.local/wp-json/acf/v3/posts/' + app.postId,
-            type: 'PUT',
-            beforeSend:   function( xhr ) {
-              xhr.setRequestHeader( 'X-WP-Nonce', wp_rest_api.nonce );
-            },
-            data: {
-              'fields': {
-                'sass_or_css': app.postCode 
-              }
-            },
-            success: function() {
-              console.log("Insert ACF Successful!");
-              // location.reload();
-            },
-            error: function() {
-              console.log("Insert ACF Failed!");
-              // app.error = postId;
-            }
+          console.log(app.postId);
 
 
-          }).always( (response) => {
-              console.log("Click ACF Success");
-              console.log(app.postId);  
-          });                    
+          // jQuery.ajax({
+          //   url:    'http://wpapp.local/wp-json/acf/v3/posts/' + app.postId,
+          //   type: 'PUT',
+          //   beforeSend:   function( xhr ) {
+          //     xhr.setRequestHeader( 'X-WP-Nonce', wp_rest_api.nonce );
+          //   },
+          //   data: {
+          //     'fields': {
+          //       'sass_or_css': app.postCode 
+          //     }
+          //   },
+          //   success: function() {
+          //     console.log("Insert ACF Successful!");
+          //     // location.reload();
+          //   },
+          //   error: function() {
+          //     console.log("Insert ACF Failed!");
+          //     // app.error = postId;
+          //   }
+
+
+          // }).always( (response) => {
+          //     console.log("Click ACF Success");
+          //     console.log(app.postId);  
+          // });                    
 
 
         },
@@ -102,7 +109,6 @@ new Vue ({
 
       }).always( (response) => {
           console.log("Click Success");
-          console.log(app.postId);
       });
 
       /**
