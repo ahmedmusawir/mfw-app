@@ -54,5 +54,5 @@
 
 	</header><!-- #masthead -->
 
-	<div id="content" class="site-content">
-	<!-- <div  id="customer-spa" class="site-content"> -->
+	<!-- <div id="content" class="site-content"> -->
+	<div  id="customer-spa" class="site-content">

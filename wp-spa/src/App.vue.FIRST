@@ -1,0 +1,47 @@
+<template>
+  <div id="customer-spa">
+
+    <app-header></app-header>
+
+    <h4 class="text-center">{{ title }}</h4>
+    <h5 class="text-center">{{ greeting() }}</h5>
+
+    <posts></posts>
+
+
+    <app-footer></app-footer>
+    
+  </div>
+</template>
+
+<script>
+
+import Posts from './components/Posts.vue' 
+
+export default {
+  components: {
+    'posts': Posts
+  },
+  data () {
+    return {
+      title: 'This is App.vue!'
+    }
+  },
+  methods: {
+    greeting: function() {
+      return 'This is a test method from App.vue';
+    }
+  } 
+}
+</script>
+
+<style lang="scss">
+
+#customer-spa {
+  border: 1rem solid gray;
+  min-height: 500px; 
+  margin-bottom: 5rem;
+}
+
+
+</style>

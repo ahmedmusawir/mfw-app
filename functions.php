@@ -158,6 +158,7 @@ function moose_framework_2_scripts() {
 	wp_enqueue_script( 'moose-framework-2-main', get_template_directory_uri() . '/js/main.min.js', array(), '20151215', true );
 	wp_enqueue_script( 'moose-framework-2-vue-js', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js', array(), '20151215', false );
 	wp_enqueue_script( 'moose-framework-2-jquery-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), '20151215', false );
+	wp_enqueue_script( 'moose-framework-2-customer-spa-js', 'http://localhost:8080/dist/build.js', array(), '20151215', true );
 	wp_enqueue_script( 'moose-framework-2-wpapp-home-js', get_template_directory_uri() . '/js/wpapp-home.js', array(), '20151215', true );
 
 
@@ -250,6 +251,14 @@ require get_template_directory() . '/_mfw-functions/login-redirect.php';
  * LOCALIZING PLUGINS AS FEATURES
  */
 require get_template_directory() . '/inc/feature-includes.php';
+
+/**
+ *
+ * CUSTOMER CUSTOM POST TYPE
+ *
+ */
+require get_template_directory() . '/_mfw-functions/customer-custom-posttype.php';
+
 
 
 

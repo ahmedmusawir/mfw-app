@@ -65,7 +65,7 @@ new Vue ({
         },
         success: function(response) {
           console.log("Insert Post Successful!");
-          // location.reload();
+          location.reload();
           console.log(app.postCode);
 
 
