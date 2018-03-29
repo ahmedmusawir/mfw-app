@@ -1,7 +1,7 @@
 <template>
 
 
-  <main class="add-post">
+  <main class="add-post wow bounceInUp">
 
     <h5>{{ pageTitle }}</h5>
    

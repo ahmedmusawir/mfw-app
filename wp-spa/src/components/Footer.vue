@@ -1,6 +1,6 @@
 <template>
 
-  <main class="footer">
+  <main class="footer  wow fadeInUpBig">
 
     <footer>
       <h6>

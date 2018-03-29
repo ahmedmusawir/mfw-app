@@ -1,14 +1,21 @@
 <template>
 
 
-  <main class="post-list">
+  <main class="post-list  wow bounceInUp">
 
     <h5 class="text-center">{{title}}</h5>
 
     <input v-model="search" class="search form-control mb-4" type="text" placeholder="Search">
 
-    <div v-for="post in filteredPosts">
-      <router-link v-bind:to="'/post/' + post.id"><h5 class="post-title">{{ post.title.rendered }}</h5></router-link>
+    <div v-for="post in filteredPosts" class="row">
+      <div class="col-sm-10">
+
+        <router-link v-bind:to="'/post/' + post.id"><h5 class="post-title">{{ post.title.rendered }}</h5></router-link>
+        
+      </div>
+      <div class="col-sm-2">
+        <router-link v-bind:to="'/postEdit/' + post.id" class="btn btn-warning">EDIT POST</router-link>
+      </div>
       <p>{{ post.id }}</p>
     </div>
     
@@ -28,7 +35,6 @@ export default {
   },
   mounted: function() {
 
-    // console.log(wp_rest_api.base_url);
     var app = this;
 
     // jQuery.get( wp_rest_api.base_url + 'posts' ).always((response) => {

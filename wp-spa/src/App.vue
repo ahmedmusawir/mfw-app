@@ -8,7 +8,7 @@
  
     <router-view></router-view>
 
-    <app-footer></app-footer>
+    <!-- <app-footer></app-footer> -->
     
   </main>
 </template>
@@ -37,8 +37,8 @@ export default {
 <style lang="scss">
 
 .primary-app-box {
-  border: 4px double gray;
-  min-height: 500px; 
+  // border: 4px double gray;
+  min-height: 800px; 
   margin-top: 5rem;
   margin-bottom: 5rem;
 

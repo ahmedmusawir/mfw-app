@@ -1,7 +1,7 @@
 <template>
 
   
-  <main class="about-pg">
+  <main class="about-pg wow bounceInUp">
 
     <h5>
       {{ aboutPg.title.rendered }}

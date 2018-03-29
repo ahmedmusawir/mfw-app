@@ -11,7 +11,7 @@ Vue.component('app-header', Header);
 Vue.component('app-footer', Footer);
 
 
-const router = new VueRouter({
+export const router = new VueRouter({
 
 	// mode: 'history',
 	routes: Routes
