@@ -4,6 +4,7 @@
   <main class="single-post  wow fadeInRight">
 
     <h4>{{postTitle}}</h4>
+    <a @click="sendHome" class="btn btn-warning float-right">BACK</a>
     <!-- <h4>{{post.title.rendered}}</h4> -->
     <article v-html="postContent">
     <!-- <article v-html="post.content.rendered"> -->
@@ -36,8 +37,8 @@ export default {
 
       // console.log( wp_rest_api.base_url );
 
-      jQuery.get( wp_rest_api.base_url + 'posts/' + id ).always((response) => {
-      // jQuery.get( '/wp-json/wp/v2/' + 'posts/' + id ).always((response) => {
+      // jQuery.get( wp_rest_api.base_url + 'posts/' + id ).always((response) => {
+      jQuery.get( '/wp-json/wp/v2/' + 'posts/' + id ).always((response) => {
 
         app.post = response;
         app.postTitle = response.title.rendered;
@@ -49,6 +50,9 @@ export default {
 
       });
 
+    },
+    sendHome() {
+      this.$router.push({path: '/'});
     }
   },
   mounted: function() {
