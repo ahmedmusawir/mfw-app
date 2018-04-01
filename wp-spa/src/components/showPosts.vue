@@ -3,6 +3,8 @@
 
   <main class="post-list  wow bounceInUp">
 
+    <alert-message v-if="alert" :message="alert"></alert-message>
+
     <h5 class="text-center">{{title}}</h5>
 
     <input v-model="search" class="search form-control mb-4" type="text" placeholder="Search">
@@ -25,17 +27,29 @@
 </template>
 
 <script>
+
+import Alert from './Alert.vue'
+
 export default {
+  components: {
+    'alert-message': Alert,
+  },
   data () {
     return {
       title:    'Show Blog Post',
       posts:    [],
-      search:   '',   
+      search:   '',  
+      alert:  '',
+
     }
   },
   mounted: function() {
 
     var app = this;
+
+    if( this.$route.query.alert ) {
+      this.alert = this.$route.query.alert;
+    }
 
     // jQuery.get( wp_rest_api.base_url + 'posts' ).always((response) => {
     jQuery.get( '/wp-json/wp/v2/' + 'posts' ).always((response) => {
@@ -53,8 +67,10 @@ export default {
   },
   computed: {
     filteredPosts: function() {
-      return this.posts.filter((post) => {
-         return post.title.rendered.match(this.search); 
+      return this.posts.filter((item) => {
+         return (
+           item.title.rendered.toLowerCase().match(this.search.toLowerCase())
+         )
       });
     }
   } 

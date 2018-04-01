@@ -1,10 +1,14 @@
 <template>
 
 
-  <main class="add-post wow bounceInUp">
+  <main class="add-post  wow fadeIn">
 
-    <h5>{{ pageTitle }}</h5>
-    <a @click="deletePost( post.id )" class="btn btn-danger float-right m-5" style="color: white;">DELETE POST</a>
+    <h5>
+    {{ pageTitle }}
+    <a @click="sendHome" class="btn btn-warning float-right" style="color: white;">BACK</a>
+    
+    </h5>
+    <a @click="deletePost( post.id )" class="btn btn-danger float-right m-5" style="color: white;">DELETE POST</a><br>
    
     <form class="mt-5">
       <div class="form-group row">
@@ -31,6 +35,12 @@
     <div v-if="submitted" class="alert alert-success" role="alert">
       <p>Thanx for adding your post ...</p>
     </div>
+    <div v-if="submitFailed" class="alert alert-danger" role="alert">
+      <p>You don't have permission to EDIT this post ...</p>
+    </div>
+    <div v-if="deleteFailed" class="alert alert-danger" role="alert">
+      <p>You don't have permission to DELETE this post ...</p>
+    </div>
 
     <article class="preview">
 
@@ -55,23 +65,28 @@ export default {
     return {
       pageTitle:    'Edit New Blog Post',
       post:         {
-        title:    "",
-        content:  "",
+        title:      "",
+        content:    "",
       },
-      submitted:  false,
-      id: this.$route.params.id,
+      submitted:    false,
+      submitFailed: false,
+      deleteFailed: false,
+      id:           this.$route.params.id,
 
     }
   },
   methods: {
+    sendHome() {
+      this.$router.push({path: '/'});
+    },
     fetchPost(id) {
 
       var app = this;
 
       // console.log( wp_rest_api.base_url );
 
-      jQuery.get( wp_rest_api.base_url + 'posts/' + id ).always((response) => {
-      // jQuery.get( '/wp-json/wp/v2/' + 'posts/' + id ).always((response) => {
+      // jQuery.get( wp_rest_api.base_url + 'posts/' + id ).always((response) => {
+      jQuery.get( '/wp-json/wp/v2/' + 'posts/' + id ).always((response) => {
         app.post = response;
 
         return app.post;
@@ -93,10 +108,11 @@ export default {
         },
         success: function() {
           console.log("Delete Post Successful!");
-          app.$router.push({path: '/'});
+          app.$router.push({path: '/', query: { alert: 'Customer Deleted with ID: ' + id }});
         },
         error: function() {
           console.log("Delete Failed!");
+          app.deleteFailed = true;
           // app.error = postId;
         }
 
@@ -138,6 +154,7 @@ export default {
         },
         error: function() {
           console.log("Insert Post Failed!");
+          app.submitFailed = true;
         }
 
 

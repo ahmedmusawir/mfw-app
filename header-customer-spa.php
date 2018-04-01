@@ -48,11 +48,37 @@
 				) );
 				?>
 			</div>
+
+
 		</nav>
 
 		<!-- Moose_Framework_2 NAVIGATION ENDS HERE -->
+<?php 
+	$current_user = wp_get_current_user();
+?>	
+
+<!-- <h4 class="float-right badge badge-secondary"><?php echo "Welcome " . $current_user->user_login; ?></h4> -->
+
 
 	</header><!-- #masthead -->
 
 	<!-- <div id="content" class="site-content"> -->
+
+
+
 	<div  id="customer-spa" class="site-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

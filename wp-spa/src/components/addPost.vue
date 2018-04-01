@@ -3,7 +3,11 @@
 
   <main class="add-post wow bounceInUp">
 
-    <h5>{{ pageTitle }}</h5>
+    <h5>
+      {{ pageTitle }}
+      <a @click="sendHome" class="btn btn-warning float-right" style="color: white;">BACK</a>
+      
+    </h5>
    
     <form>
       <div class="form-group row">
@@ -62,6 +66,9 @@ export default {
     }
   },
   methods: {
+    sendHome() {
+      this.$router.push({path: '/'});
+    },
     insertPost: function() {
       // return 'This is a test method';
       console.log("Clicked Insert");

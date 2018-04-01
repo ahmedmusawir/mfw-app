@@ -23,8 +23,11 @@ export default {
   },
   data () {
     return {
-      title: 'Welcome to WP SPA'
+      title:  'Welcome to WP SPA',
     }
+  },
+  mounted: function() {
+    
   },
   methods: {
     greeting: function() {

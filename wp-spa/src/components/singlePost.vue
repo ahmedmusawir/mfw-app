@@ -4,9 +4,9 @@
   <main class="single-post  wow fadeInRight">
 
     <h4>{{postTitle}}</h4>
-    <a @click="sendHome" class="btn btn-warning float-right">BACK</a>
+    <a @click="sendHome" class="btn btn-warning float-right mb-5">BACK</a>
     <!-- <h4>{{post.title.rendered}}</h4> -->
-    <article v-html="postContent">
+    <article v-html="postContent" class="mt-5">
     <!-- <article v-html="post.content.rendered"> -->
     </article>
     <p>
@@ -59,7 +59,7 @@ export default {
 
     var app = this;
 
-    console.log( "this is coming from Mounted: " + wp_rest_api.base_url );
+    // console.log( "this is coming from Mounted: " + wp_rest_api.base_url );
 
     app.fetchPost( app.id );     
 
